@@ -1,0 +1,19 @@
+  <%= form.error_messages %>
+
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :user_id %><br />
+    <%= form.select :user_id, User.find(:all).map{ |u| [u.name,u.id]} %>
+  </p>
+  <p>
+    <%= form.label :value %><br />
+    <% if form.object.permitted_to?([:write,:write_value]) %>
+		<%= form.text_field :value %>
+  	<% end %>
+  </p>
+  <p>
+    <%= form.submit 'Save' %>
+  </p>
